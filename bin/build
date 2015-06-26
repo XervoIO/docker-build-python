@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -e
+set -x # TODO remove
+
+if [[ ! $INPUT_DIR ]] || [[ ! $OUTPUT_DIR ]]; then
+  echo "Input/Output directory variables must be set.\n"
+  exit 1
+fi
+
+# determine python version
+pyenv shell 2.7.8
+pyenv virtualenv app
+pyenv activate app
+
+# install requirements and package
+pip install requirements.txt
+
+# copy /opt/pyenv to $OUTPUT_DIR/.modulus/opt/pyenv
