@@ -8,6 +8,8 @@ if [[ ! $INPUT_DIR ]] || [[ ! $OUTPUT_DIR ]]; then
 fi
 
 mkdir -p $INPUT_DIR/.modulus
+
+export PATH=/opt/pyenv/bin:$PATH
 # determine python version
 pyenv shell 2.7.8
 pyenv virtualenv app
