@@ -29,4 +29,3 @@ pyenv global $DEFAULT
 
 chown mop:mop -R /opt/pyenv
 chmod g-w -R /opt/pyenv
-

@@ -15,6 +15,7 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 # determine python version
+pyenv install
 pyenv virtualenv app
 pyenv activate app
 
