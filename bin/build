@@ -7,6 +7,7 @@ if [[ ! $INPUT_DIR ]] || [[ ! $OUTPUT_DIR ]]; then
   exit 1
 fi
 
+mkdir -p $INPUT_DIR/.modulus
 # determine python version
 pyenv shell 2.7.8
 pyenv virtualenv app
