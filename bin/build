@@ -10,6 +10,10 @@ fi
 mkdir -p $INPUT_DIR/.modulus
 
 export PATH=/opt/pyenv/bin:$PATH
+
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
 # determine python version
 pyenv shell 2.7.8
 pyenv virtualenv app
