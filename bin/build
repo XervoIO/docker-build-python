@@ -7,15 +7,13 @@ if [[ ! $INPUT_DIR ]] || [[ ! $OUTPUT_DIR ]]; then
   exit 1
 fi
 
-mkdir -p $INPUT_DIR/.modulus
-
 export PATH=/opt/pyenv/bin:$PATH
 
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 # determine python version
-pyenv install
+pyenv install -s
 pyenv virtualenv app
 pyenv activate app
 
