@@ -7,6 +7,8 @@ if [[ ! $INPUT_DIR ]] || [[ ! $OUTPUT_DIR ]]; then
   exit 1
 fi
 
+cp -R /opt/pyenv/. /mnt/home/pyenv
+
 export PATH=$PYENV_ROOT/bin:$PATH
 
 eval "$(pyenv init -)"
