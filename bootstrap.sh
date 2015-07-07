@@ -19,15 +19,12 @@ AVAILABLE=(
   3.3.6
   3.4.3
 )
-DEFAULT=2.7.10
 
 mkdir -p /mnt/home
 
 for version in "${AVAILABLE[@]}"; do
   pyenv install $version
 done
-
-pyenv global $DEFAULT
 
 mv /mnt/home/pyenv /opt/pyenv
 rm -rf /mnt/home

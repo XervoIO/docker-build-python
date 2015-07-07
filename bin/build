@@ -16,7 +16,18 @@ eval "$(pyenv virtualenv-init -)"
 
 cd $INPUT_DIR
 
-# determine python version
+VERSION=2.7.10
+
+# if no .python-version file exists, create one
+if [[ ! -f $INPUT_DIR/.python-version ]]; then
+  # inherit version from app.json
+  if [[ $MODULUS_CONFIG_ENGINES_PYTHON ]]; then
+    VERSION=$MODULUS_CONFIG_ENGINES_PYTHON
+  fi
+  pyenv install -s $VERSION
+  pyenv local $VERSION
+fi
+
 pyenv install -s
 pyenv virtualenv app
 pyenv activate app
