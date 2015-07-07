@@ -22,6 +22,8 @@ pyenv activate app
 # install requirements and package
 pip install -r requirements.txt --exists-action=w --disable-pip-version-check --no-cache-dir
 
+mkdir -p $OUTPUT_DIR/.modulus
+
 # copy /opt/pyenv to $OUTPUT_DIR/.modulus/opt/pyenv
 cp -R $INPUT_DIR/. $OUTPUT_DIR
 cp -R /opt/pyenv $OUTPUT_DIR/.modulus/pyenv
