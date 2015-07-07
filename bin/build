@@ -12,12 +12,12 @@ export PATH=$PYENV_ROOT/bin:$PATH
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+cd $INPUT_DIR
+
 # determine python version
 pyenv install -s
 pyenv virtualenv app
 pyenv activate app
-
-cd $INPUT_DIR
 
 # install requirements and package
 pip install -r requirements.txt --exists-action=w --disable-pip-version-check --no-cache-dir
