@@ -21,11 +21,16 @@ AVAILABLE=(
 )
 DEFAULT=2.7.10
 
+mkdir -p /mnt/home
+
 for version in "${AVAILABLE[@]}"; do
   pyenv install $version
 done
 
 pyenv global $DEFAULT
+
+mv /mnt/home/pyenv /opt/pyenv
+rm -rf /mnt/home
 
 chown mop:mop -R /opt/pyenv
 chmod g-w -R /opt/pyenv
