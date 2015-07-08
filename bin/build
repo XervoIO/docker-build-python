@@ -32,8 +32,13 @@ pyenv install -s
 pyenv virtualenv app
 pyenv activate app
 
+PIP_FLAGS="--exists-action=w --disable-pip-version-check --no-cache-dir"
 # install requirements and package
-pip install -r requirements.txt --exists-action=w --disable-pip-version-check --no-cache-dir
+pip install -r requirements.txt $PIP_FLAGS
+
+# install gunicorn
+pip install gunicorn $PIP_FLAGS
+
 
 mkdir -p $OUTPUT_DIR/.modulus
 
