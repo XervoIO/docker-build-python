@@ -39,6 +39,19 @@ pip install -r requirements.txt $PIP_FLAGS
 # install gunicorn
 pip install gunicorn $PIP_FLAGS
 
+# precompile Django assets
+findFile() {
+  find $2 -name $1 ! -path "*/node_modules/*" ! -path ".git/*" | \
+  awk -F'/' '{print $0 "," NF-1}' | \
+  sort -t, -nk2 | \
+  awk -F',' '{print $1}' | \
+  head -n 1
+}
+
+MANAGE_FILE=$(findFile "manage.py" "./")
+if [[ -f $MANAGE_FILE ]]; then
+  $MANAGE_FILE collectstatic --noinput
+fi
 
 mkdir -p $OUTPUT_DIR/.modulus
 
