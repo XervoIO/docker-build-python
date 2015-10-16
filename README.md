@@ -31,8 +31,8 @@ extracted application source into the input folder. Then mount this directory
 to /mnt inside the container and run the build executable.
 
 ``` text
-$ docker pull onmodulus/docker-build-python:latest
-$ docker run -v /host-folder:/mnt -p 80:8080 onmodulus/docker-build-python:latest build
+$ docker pull onmodulus/build-python
+$ docker run -v /host-folder:/mnt -p 80:8080 onmodulus/build-python build
 ```
 
 All Modulus build images have a binary available in the PATH named `build` that

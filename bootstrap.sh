@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -eo pipefail
+# set -eo pipefail - Disabled as it causes the pyhthon builds to fail part way through
 set -x
 
 apt-get update
@@ -21,7 +21,7 @@ AVAILABLE=(
 )
 
 mkdir -p /mnt/home
-
+export MAKEFLAGS="-j $(grep -c ^processor /proc/cpuinfo)"
 for version in "${AVAILABLE[@]}"; do
   pyenv install $version
 done
