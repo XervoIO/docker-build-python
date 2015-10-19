@@ -1,4 +1,4 @@
-FROM onmodulus/image-build-base:0.0.1
+FROM onmodulus/build-base
 
 ENV \
   PYENV_ROOT=/mnt/home/pyenv \
