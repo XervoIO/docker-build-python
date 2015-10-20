@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
-set -e
-set -x # TODO remove
+set -eo pipefail
 
 if [[ ! $INPUT_DIR ]] || [[ ! $OUTPUT_DIR ]]; then
-  echo "Input/Output directory variables must be set.\n"
+  echo "Input/Output directory variables must be set."
   exit 1
 fi
 
@@ -16,6 +15,8 @@ eval "$(pyenv virtualenv-init -)"
 
 cd $INPUT_DIR
 
+echo "Setting up virtual environment."
+
 VERSION=2.7.10
 
 # if no .python-version file exists, create one
@@ -24,20 +25,21 @@ if [[ ! -f $INPUT_DIR/.python-version ]]; then
   if [[ $MODULUS_CONFIG_ENGINES_PYTHON ]]; then
     VERSION=$MODULUS_CONFIG_ENGINES_PYTHON
   fi
-  pyenv install -s $VERSION
-  pyenv local $VERSION
+  pyenv install -s $VERSION > /dev/null 2>&1
+  pyenv local $VERSION > /dev/null 2>&1
 fi
 
-pyenv install -s
-pyenv virtualenv app
-pyenv activate app
+pyenv install -s > /dev/null 2>&1
+pyenv virtualenv app > /dev/null 2>&1
+pyenv activate app > /dev/null 2>&1
 
+echo "Installing requirements."
 PIP_FLAGS="--exists-action=w --disable-pip-version-check --no-cache-dir"
 # install requirements and package
 pip install -r requirements.txt $PIP_FLAGS
 
 # install gunicorn
-pip install gunicorn $PIP_FLAGS
+pip install gunicorn $PIP_FLAGS > /dev/null 2>&1
 
 # precompile Django assets
 findFile() {
@@ -50,7 +52,8 @@ findFile() {
 
 MANAGE_FILE=$(findFile "manage.py" "./")
 if [[ -f $MANAGE_FILE ]]; then
-  $MANAGE_FILE collectstatic --noinput
+  echo "Copying static assets."
+  $MANAGE_FILE collectstatic --noinput 2>&1 | sed '/^Copying/d;/^$/d;/^ /d'
 fi
 
 mkdir -p $OUTPUT_DIR/.modulus
