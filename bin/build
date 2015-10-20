@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-set -e
-set -x # TODO remove
+set -eo pipefail
 
 if [[ ! $INPUT_DIR ]] || [[ ! $OUTPUT_DIR ]]; then
   echo "Input/Output directory variables must be set.\n"
