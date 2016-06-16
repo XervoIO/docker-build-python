@@ -2,10 +2,6 @@
 # set -eo pipefail - Disabled as it causes the pyhthon builds to fail part way through
 set -x
 
-apt-get update
-apt-get install -y python-dev libssl-dev zlib1g-dev libbz2-dev libreadline-dev \
-  libsqlite3-dev libpq-dev llvm
-
 curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
 
 eval "$(pyenv init -)"
